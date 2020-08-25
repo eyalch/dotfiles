@@ -101,15 +101,17 @@ endfun
     tnoremap <M-[> <Esc>
     tnoremap <C-v><Esc> <Esc>
 
+    " Switch to other windows
     tnoremap <C-h> <C-\><C-n><C-w>h
     tnoremap <C-j> <C-\><C-n><C-w>j
     tnoremap <C-k> <C-\><C-n><C-w>k
     tnoremap <C-l> <C-\><C-n><C-w>l
 
-    if (expand('<afile>') !~ "fzf") && (expand('<afile>') !~ "coc")
-        " call nvim_input('<CR>')
-        echo "Terminal which isn't fzf or coc"
-    endif
+    " Close terminal automatically when the process exists
+    autocmd TermClose term://*
+        \ if (expand('<afile>') !~ "fzf") && (expand('<afile>') !~ "coc") |
+        \   call nvim_input('<CR>') |
+        \ endif
 " }
 
 " netrw {
@@ -119,6 +121,23 @@ endfun
 " }
 
 " coc.nvim {
+	let g:coc_global_extensions = [
+        \ "coc-css",
+        \ "coc-emmet",
+        \ "coc-eslint",
+        \ "coc-go",
+        \ "coc-html",
+        \ "coc-json",
+        \ "coc-markdownlint",
+        \ "coc-prettier",
+        \ "coc-python",
+        \ "coc-sh",
+        \ "coc-spell-checker",
+        \ "coc-svelte",
+        \ "coc-tsserver",
+        \ "coc-yaml",
+        \ ]
+
     " TextEdit might fail if hidden is not set.
     set hidden
 

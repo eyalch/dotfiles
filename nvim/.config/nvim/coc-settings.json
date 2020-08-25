@@ -13,5 +13,6 @@
     "completeUnimported": true
   },
   "cSpell.userWords": ["eyalch"],
-  "cSpell.showStatus": false
+  "cSpell.showStatus": false,
+  "cSpell.diagnosticLevel": "Hint"
 }
