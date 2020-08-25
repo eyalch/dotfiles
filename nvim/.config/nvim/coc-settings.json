@@ -1,0 +1,17 @@
+{
+  "coc.preferences.formatOnSaveFiletypes": [
+    "json",
+    "go",
+    "css",
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+  "prettier.semi": false,
+  "go.goplsOptions": {
+    "completeUnimported": true
+  },
+  "cSpell.userWords": ["eyalch"],
+  "cSpell.showStatus": false
+}

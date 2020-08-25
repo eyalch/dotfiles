@@ -1,0 +1,57 @@
+# Path to your oh-my-zsh installation.
+export ZSH=$HOME/.oh-my-zsh
+
+ZSH_THEME="spaceship"
+SPACESHIP_BATTERY_SHOW=false
+HYPHEN_INSENSITIVE="true"
+COMPLETION_WAITING_DOTS="true"
+
+plugins=(colored-man-pages django docker docker-compose httpie sudo)
+# Some potentially useful plugins: dotenv
+
+source $ZSH/oh-my-zsh.sh
+
+# User configuration
+
+# export MANPATH="/usr/local/man:$MANPATH"
+
+export LANG=en_US.UTF-8
+
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
+
+# ssh
+# export SSH_KEY_PATH="~/.ssh/rsa_id"
+
+# Auto Suggestions
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# Syntax Highlighting
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# fzf key-bindings & completion
+source /usr/share/fzf/key-bindings.zsh
+source /usr/share/fzf/completion.zsh
+
+# Run `ls` on every directory change
+function chpwd() {
+    emulate -L zsh
+    ls
+}
+
+# Aliases
+alias rm="trash"
+alias exa="exa --git"
+alias ls="exa"
+alias l="exa -la"
+alias ll="exa -l"
+alias grep="grep --color=auto"
+alias D="$HOME/Downloads"
+alias P="$HOME/Projects"
+alias icat="kitty +kitten icat"
+alias cat="bat"
+alias v="nvim"
+alias gst="git st"
+alias glg="git lg"
+
+[[ $TMUX != "" ]] && export TERM="screen-256color" || true
