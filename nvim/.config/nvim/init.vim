@@ -14,6 +14,7 @@
     Plug 'easymotion/vim-easymotion'
     Plug 'sheerun/vim-polyglot'
     Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+    Plug 'christoomey/vim-tmux-navigator'
     Plug 'ryanoasis/vim-devicons' " needs to be last
     call plug#end()
 
@@ -71,10 +72,6 @@ endfun
 
 " Splits {
     " Use ctrl-[hjkl] to navigate splits
-    nnoremap <C-h> <C-w>h
-    nnoremap <C-j> <C-w>j
-    nnoremap <C-k> <C-w>k
-    nnoremap <C-l> <C-w>l
     vnoremap <C-h> <Esc><C-w>h
     vnoremap <C-j> <Esc><C-w>j
     vnoremap <C-k> <Esc><C-w>k
@@ -87,31 +84,6 @@ endfun
     " Open new split panes to right and bottom
     set splitbelow
     set splitright
-" }
-
-" Terminal {
-    " Open terminal
-    nnoremap <leader>t :15sp\|:te<CR>
-
-    " Always start in insert mode
-    autocmd TermOpen * setlocal nonumber | startinsert
-
-    " Exit to normal mode
-    tnoremap <Esc> <C-\><C-n>
-    tnoremap <M-[> <Esc>
-    tnoremap <C-v><Esc> <Esc>
-
-    " Switch to other windows
-    tnoremap <C-h> <C-\><C-n><C-w>h
-    tnoremap <C-j> <C-\><C-n><C-w>j
-    tnoremap <C-k> <C-\><C-n><C-w>k
-    tnoremap <C-l> <C-\><C-n><C-w>l
-
-    " Close terminal automatically when the process exists
-    autocmd TermClose term://*
-        \ if (expand('<afile>') !~ "fzf") && (expand('<afile>') !~ "coc") |
-        \   call nvim_input('<CR>') |
-        \ endif
 " }
 
 " netrw {

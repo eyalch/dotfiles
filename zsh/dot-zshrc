@@ -54,4 +54,11 @@ alias v="nvim"
 alias gst="git st"
 alias glg="git lg"
 
-[[ $TMUX != "" ]] && export TERM="screen-256color" || true
+if [ -n "$TMUX" ]; then
+    export TERM="screen-256color"
+fi
+
+# Attach to the existing tmux session or create one
+if [ -z "$TMUX" ]; then
+    tmux attach -t default || tmux new -s default
+fi
