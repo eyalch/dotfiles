@@ -1,6 +1,6 @@
 " vim: foldmethod=indent
 
-" Plugins {
+" Plugins
     call plug#begin(stdpath('data') . '/plugged')
     Plug 'dracula/vim', { 'as': 'dracula' }
     Plug 'vim-airline/vim-airline'
@@ -9,9 +9,11 @@
     Plug 'junegunn/fzf.vim'
     Plug 'tpope/vim-commentary'
     Plug 'tpope/vim-fugitive'
-    "Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+    Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+    Plug 'preservim/nerdtree' |
+        \ Plug 'Xuyuanp/nerdtree-git-plugin'
+    Plug 'SirVer/ultisnips'
     Plug 'airblade/vim-gitgutter'
-    Plug 'easymotion/vim-easymotion'
     Plug 'sheerun/vim-polyglot'
     Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
     Plug 'christoomey/vim-tmux-navigator'
@@ -19,15 +21,22 @@
     call plug#end()
 
     let g:plug_window = 'noautocmd vertical topleft new'
-" }
 
-map <SPACE> <leader>
+" Use <Space> as the leader
+let mapleader = " "
 
-filetype plugin indent on
+" Use system clipboard
+set clipboard+=unnamedplus
+
+" Vertically center document when entering insert mode
+autocmd InsertEnter * norm zz
 
 " j/k will move virtual lines (lines that wrap)
 noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
 noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
+
+" Fix Y behavior
+nmap Y y$
 
 " Trim whitespace from lines' ends on save
 autocmd BufWritePre * :call TrimWhitespace()
@@ -37,40 +46,52 @@ fun! TrimWhitespace()
     call winrestview(l:save)
 endfun
 
-" Display {
-    colorscheme dracula
+" Press j+k simultaneously to exit insert mode
+inoremap jk <Esc>
+inoremap kj <Esc>
 
-    " vim-airline
-    let g:airline_theme = 'dracula'
+" Enable mouse
+set mouse=a
 
+set termguicolors
+
+" Vim menus autocomletion
+set wildmode=longest,list,full
+
+colorscheme dracula
+
+" Display
     set number      " show line numbers
     set cursorline  " highlight current line
     set showmatch   " highlight matching [{()}]
     set scrolloff=5  " always keep at least 5 visible lines
-" }
 
-" Indentation/Tabs {
+" Status
+    set noshowmode
+
+    " vim-airline
+        let g:airline_theme = 'dracula'
+        let g:airline#extensions#tabline#enabled = 1
+        let g:airline#extensions#tabline#left_sep = ' '
+        let g:airline#extensions#tabline#left_alt_sep = '|'
+
+" Indentation
     set tabstop=4      " number of visual spaces per TAB
     set softtabstop=4  " number of spaces in tab when editing
     set shiftwidth=4   " indent by 4 spaces when using >>, <<, == etc
     set expandtab      " tabs are spaces
-" }
 
-" Searching {
+" Searching
     " turn off search highlight
     nnoremap <leader><space> :nohlsearch<CR>
 
-    set ignorecase
-    set smartcase
-" }
+    set ignorecase smartcase
 
-" Folding {
-    "set foldlevelstart=99  " open most folds by default
+" Folding
     set nofoldenable
     set foldmethod=syntax
-" }
 
-" Splits {
+" Splits
     " Use ctrl-[hjkl] to navigate splits
     vnoremap <C-h> <Esc><C-w>h
     vnoremap <C-j> <Esc><C-w>j
@@ -82,17 +103,16 @@ endfun
     inoremap <C-l> <Esc><C-w>l
 
     " Open new split panes to right and bottom
-    set splitbelow
-    set splitright
-" }
+    set splitbelow splitright
 
-" netrw {
-    let g:netrw_banner = 0     " Hide annoying 'help' banner
-    let g:netrw_liststyle = 3  " Use tree view
-    let g:netrw_winsize = '30' " Smaller default window size
-" }
+" netrw
+    let g:netrw_banner = 0          " Hide annoying 'help' banner
+    let g:netrw_liststyle = 3       " Use tree view
+    let g:netrw_winsize = 25        " Smaller default window size
+    let g:netrw_browse_split = 4    " Open files in previous window
+    let g:netrw_altv = 1
 
-" coc.nvim {
+" coc.nvim
 	let g:coc_global_extensions = [
         \ "coc-css",
         \ "coc-emmet",
@@ -266,30 +286,58 @@ endfun
 
     " Setup the Prettier command
     command! -nargs=0 Prettier :CocCommand prettier.formatFile
-" }
 
-" Go {
-    " vim-go {
+" Go
+    autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
+
+    " vim-go
         " use a LSP client (coc.nvim) for some of vim-go's features
         let g:go_code_completion_enabled = 0
         let g:go_fmt_autosave = 0
-        let g:go_mod_fmt_autosave = 0
         let g:go_gopls_enabled = 0
         let g:go_def_mapping_enabled = 0
-    " }
+        let g:go_doc_keywordprg_enabled = 0
 
-    " coc-go {
+        let g:go_metalinter_autosave = 1
+        let g:go_echo_go_info = 1
+
+        " Improve syntax highlighting
+        let g:go_highlight_types = 1
+        let g:go_highlight_fields = 1
+        let g:go_highlight_functions = 1
+        let g:go_highlight_function_calls = 1
+        let g:go_highlight_operators = 1
+        let g:go_highlight_extra_types = 1
+        let g:go_highlight_build_constraints = 1
+
+    " coc-go
         " add missing imports on save
         autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
-    " }
-" }
 
-" EasyMotion {
-    let g:EasyMotion_do_mapping = 0  " Disable default mappings
-    nmap s <Plug>(easymotion-overwin-f2)
-    let g:EasyMotion_smartcase = 1
-" }
+" FZF
+    command! CtrlP execute (len(system('git rev-parse'))) ? ':Files' : ':GFiles'
+    nnoremap <C-p> :CtrlP<CR>
 
-" FZF {
-    nnoremap <leader>f :GFiles<CR>
-" }
+    nnoremap <leader><C-p> :Files<CR>
+
+" NERDTree
+    " Open NERDTree when opening a directory
+    autocmd StdinReadPre * let s:std_in=1
+    autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
+
+    " If more than one window and previous buffer was NERDTree, go back to it.
+    " autocmd BufEnter * if bufname('#') =~# "^NERD_tree_" && winnr('$') > 1 | b# | endif
+
+    " Toggle NERDTree
+    map <C-n> :NERDTreeToggle<CR>
+
+    " Show hidden files (dot files)
+    let NERDTreeShowHidden=1
+
+    " Use some rare character to disable jumping to next/prev siblings since
+    " their keybindings conflict with mine.
+    let g:NERDTreeMapJumpNextSibling="☻"
+    let g:NERDTreeMapJumpPrevSibling="☺"
+
+    " nerdtree-git-plugin
+        let g:NERDTreeGitStatusUseNerdFonts = 1
