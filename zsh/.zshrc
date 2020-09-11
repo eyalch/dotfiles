@@ -1,4 +1,3 @@
-# Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
 ZSH_THEME="spaceship"
@@ -6,19 +5,12 @@ SPACESHIP_BATTERY_SHOW=false
 HYPHEN_INSENSITIVE="true"
 COMPLETION_WAITING_DOTS="true"
 
-plugins=(colored-man-pages django docker docker-compose httpie sudo)
+plugins=(django docker docker-compose httpie sudo)
 # Some potentially useful plugins: dotenv
 
 source $ZSH/oh-my-zsh.sh
 
-# User configuration
-
-# export MANPATH="/usr/local/man:$MANPATH"
-
 export LANG=en_US.UTF-8
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
 
 # ssh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
@@ -28,10 +20,6 @@ source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # Syntax Highlighting
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-# fzf key-bindings & completion
-source /usr/share/fzf/key-bindings.zsh
-source /usr/share/fzf/completion.zsh
 
 # Run `ls` on every directory change
 function chpwd() {
@@ -58,7 +46,19 @@ if [ -n "$TMUX" ]; then
     export TERM="screen-256color"
 fi
 
-# Attach to the existing tmux session or create one
+# Prompt to attach to the default tmux session; create it if it doesn't exist
 if [ -z "$TMUX" ]; then
-    tmux attach -t default || tmux new -s default
+    TMUX_DEFAULT_SESSION="default"
+
+    tmux has-session -t "$TMUX_DEFAULT_SESSION" 2>/dev/null
+    if [ "$?" -eq 0 ]; then
+        echo -n "Attach to default tmux session? (Y/n) "
+        read answer
+
+        if [[ "$answer" == "Y" || "$answer" == "y" || "$answer" == "" ]]; then
+            tmux attach-session -t "$TMUX_DEFAULT_SESSION"
+        fi
+    else
+        tmux new-session -A -s "$TMUX_DEFAULT_SESSION"
+    fi
 fi
