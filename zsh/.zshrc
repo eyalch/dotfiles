@@ -1,7 +1,11 @@
 export ZSH=$HOME/.oh-my-zsh
 
-ZSH_THEME="spaceship"
-SPACESHIP_BATTERY_SHOW=false
+# Install Starship prompt if not installed
+if ! command -v starship &> /dev/null; then
+    echo "Starship prompt (https://starship.rs/) isn't installed. Installing..."
+    curl -fsSL https://starship.rs/install.sh | bash
+fi
+
 HYPHEN_INSENSITIVE="true"
 COMPLETION_WAITING_DOTS="true"
 
@@ -62,3 +66,5 @@ if [ -z "$TMUX" ]; then
         tmux new-session -A -s "$TMUX_DEFAULT_SESSION"
     fi
 fi
+
+eval "$(starship init zsh)"
