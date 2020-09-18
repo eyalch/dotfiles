@@ -13,7 +13,10 @@
     "completeUnimported": true,
     "usePlaceholders": true
   },
-  "cSpell.userWords": ["eyalch"],
+  "cSpell.userWords": [
+    "Adonisjs",
+    "eyalch"
+  ],
   "cSpell.showStatus": false,
   "cSpell.diagnosticLevel": "Hint"
 }
