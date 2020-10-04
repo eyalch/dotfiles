@@ -12,6 +12,7 @@ let g:coc_global_extensions = [
     \ "coc-spell-checker",
     \ "coc-svelte",
     \ "coc-tsserver",
+    \ "coc-vetur",
     \ "coc-yaml",
     \ ]
 

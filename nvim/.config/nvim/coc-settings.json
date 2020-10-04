@@ -6,17 +6,16 @@
     "javascript",
     "javascriptreact",
     "typescript",
-    "typescriptreact"
+    "typescriptreact",
+    "html",
+    "vue"
   ],
   "prettier.semi": false,
   "go.goplsOptions": {
     "completeUnimported": true,
     "usePlaceholders": true
   },
-  "cSpell.userWords": [
-    "Adonisjs",
-    "eyalch"
-  ],
+  "cSpell.userWords": ["Adonisjs", "eyalch"],
   "cSpell.showStatus": false,
   "cSpell.diagnosticLevel": "Hint"
 }
