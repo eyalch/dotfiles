@@ -111,10 +111,10 @@ colorscheme dracula
     set splitbelow splitright
 
 " FZF
+    " command! MyFiles execute (len(system('git rev-parse'))) ? ':Files' : ':GFiles --cached --others --exclude-standard'
     command! MyFiles execute (len(system('git rev-parse'))) ? ':Files' : ':GFiles'
     nnoremap <C-p> :MyFiles<CR>
-
-    nnoremap <leader><C-p> :Files<CR>
+    nnoremap <leader><C-p> :GFiles --others<CR>
 
 " glyph-palette
     augroup my-glyph-palette
