@@ -7,7 +7,9 @@
     Plug 'neoclide/coc.nvim', { 'branch': 'release' }
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     Plug 'junegunn/fzf.vim'
-    Plug 'tpope/vim-commentary'
+    " Plug 'tpope/vim-commentary'
+    " Plug 'preservim/nerdcommenter'
+    Plug 'tomtom/tcomment_vim'
     Plug 'tpope/vim-fugitive'
     Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
     Plug 'lambdalisue/fern.vim'
@@ -22,6 +24,8 @@
     Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
     Plug 'christoomey/vim-tmux-navigator'
     Plug 'luochen1990/rainbow'
+    Plug 'jiangmiao/auto-pairs'
+    Plug 'alvan/vim-closetag'
     Plug 'ryanoasis/vim-devicons' " needs to be last
     call plug#end()
 
@@ -123,8 +127,10 @@ colorscheme dracula
     augroup END
 
 " Rainbow
-    let g:rainbow_active = 1
+    " let g:rainbow_active = 1
 
+" closetag.vim
+    let g:closetag_filetypes = 'html,xhtml,phtml,vue'
 
 runtime go.vim
 runtime fern.vim

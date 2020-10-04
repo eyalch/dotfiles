@@ -51,7 +51,7 @@ if [ -n "$TMUX" ]; then
 fi
 
 # Prompt to attach to the default tmux session; create it if it doesn't exist
-if [ -z "$TMUX" ]; then
+if [[ -z "$TMUX" && "$TERM_PROGRAM" != "vscode" ]]; then
     TMUX_DEFAULT_SESSION="default"
 
     tmux has-session -t "$TMUX_DEFAULT_SESSION" 2>/dev/null
