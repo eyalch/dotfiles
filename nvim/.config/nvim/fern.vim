@@ -1,6 +1,7 @@
 let g:fern#renderer = "nerdfont"
-let g:fern#default_hidden = 1       " Show hidden files
+let g:fern#default_hidden = 1           " Show hidden files
 let g:fern#drawer_width = 40
+let g:fern#disable_default_mappings = 1
 
 map <C-b> :Fern . -drawer -toggle -reveal=%<CR>
 
@@ -24,8 +25,3 @@ map <C-b> :Fern . -drawer -toggle -reveal=%<CR>
         bwipeout %
         execute printf('Fern %s', fnameescape(path))
     endfunction
-
-" augroup my-fern-startup
-"     autocmd! *
-"     autocmd VimEnter * ++nested Fern ~/
-" augroup END
