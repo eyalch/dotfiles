@@ -50,21 +50,4 @@ if [ -n "$TMUX" ]; then
     export TERM="screen-256color"
 fi
 
-# Prompt to attach to the default tmux session; create it if it doesn't exist
-if [[ -z "$TMUX" && "$TERM_PROGRAM" != "vscode" ]]; then
-    TMUX_DEFAULT_SESSION="default"
-
-    tmux has-session -t "$TMUX_DEFAULT_SESSION" 2>/dev/null
-    if [ "$?" -eq 0 ]; then
-        echo -n "Attach to default tmux session? (Y/n) "
-        read answer
-
-        if [[ "$answer" == "Y" || "$answer" == "y" || "$answer" == "" ]]; then
-            tmux attach-session -t "$TMUX_DEFAULT_SESSION"
-        fi
-    else
-        tmux new-session -A -s "$TMUX_DEFAULT_SESSION"
-    fi
-fi
-
 eval "$(starship init zsh)"
