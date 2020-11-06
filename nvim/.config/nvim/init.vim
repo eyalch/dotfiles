@@ -1,5 +1,27 @@
 " vim: foldmethod=indent
 
+" Use <Space> as the leader
+let mapleader = " "
+
+" Use system clipboard
+set clipboard+=unnamedplus
+
+" Vertically center document when entering insert mode
+autocmd InsertEnter * norm zz
+
+" Fix Y behavior
+nmap Y y$
+
+" Searching
+    " turn off search highlight
+    nnoremap <leader><space> :nohlsearch<CR>
+
+    set ignorecase smartcase
+
+if exists('g:vscode')
+
+else
+
 " Plugins
     call plug#begin(stdpath('data') . '/plugged')
     Plug 'dracula/vim', { 'as': 'dracula' }
@@ -31,21 +53,9 @@
 
     let g:plug_window = 'noautocmd vertical topleft new'
 
-" Use <Space> as the leader
-let mapleader = " "
-
-" Use system clipboard
-set clipboard+=unnamedplus
-
-" Vertically center document when entering insert mode
-autocmd InsertEnter * norm zz
-
 " j/k will move virtual lines (lines that wrap)
 noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
 noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
-
-" Fix Y behavior
-nmap Y y$
 
 " Trim whitespace from lines' ends on save
 autocmd BufWritePre * :call TrimWhitespace()
@@ -90,12 +100,6 @@ colorscheme dracula
     set shiftwidth=4   " indent by 4 spaces when using >>, <<, == etc
     set expandtab      " tabs are spaces
 
-" Searching
-    " turn off search highlight
-    nnoremap <leader><space> :nohlsearch<CR>
-
-    set ignorecase smartcase
-
 " Folding
     set nofoldenable
     set foldmethod=syntax
@@ -135,3 +139,5 @@ colorscheme dracula
 runtime go.vim
 runtime fern.vim
 runtime coc.vim
+
+endif

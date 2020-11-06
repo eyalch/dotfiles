@@ -4,6 +4,7 @@ export PATH="$HOME/.local/bin:$PATH"
 export EDITOR="nvim"
 export VISUAL="$EDITOR"
 export TERMINAL="kitty"
+export TERM="xterm-256color"
 export BROWSER="firefox"
 export PIPENV_VENV_IN_PROJECT=true
 export PYTHONDONTWRITEBYTECODE=true
