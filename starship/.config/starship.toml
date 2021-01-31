@@ -1,5 +1,6 @@
 [aws]
 symbol = " "
+disabled = true
 
 [battery]
 full_symbol = ""
