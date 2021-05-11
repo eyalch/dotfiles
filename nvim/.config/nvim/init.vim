@@ -18,10 +18,6 @@ nmap Y y$
 
     set ignorecase smartcase
 
-if exists('g:vscode')
-
-else
-
 " Install vim-plug if not found
 let vim_plug_location = ($XDG_DATA_HOME ? $XDG_DATA_HOME : expand('~/.local/share')) . '/nvim/site/autoload/plug.vim'
 if empty(glob(vim_plug_location))
@@ -31,6 +27,10 @@ endif
 
 " Plugins
     call plug#begin(stdpath('data') . '/plugged')
+
+    if exists('g:vscode')
+    Plug 'asvetliakov/vim-easymotion'
+    else
     Plug 'dracula/vim', { 'as': 'dracula' }
     Plug 'vim-airline/vim-airline'
     Plug 'neoclide/coc.nvim', { 'branch': 'release' }
@@ -56,9 +56,21 @@ endif
     Plug 'jiangmiao/auto-pairs'
     Plug 'alvan/vim-closetag'
     Plug 'ryanoasis/vim-devicons' " needs to be last
+    endif
+
     call plug#end()
 
-    let g:plug_window = 'noautocmd vertical topleft new'
+if exists('g:vscode')
+
+    map <Leader> <Plug>(easymotion-prefix)
+    nmap s <Plug>(easymotion-s)
+
+    " Turn on case-insensitive feature
+    let g:EasyMotion_smartcase = 1
+
+else
+
+let g:plug_window = 'noautocmd vertical topleft new'
 
 " j/k will move virtual lines (lines that wrap)
 noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
