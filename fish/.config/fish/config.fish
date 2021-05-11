@@ -15,6 +15,13 @@ set -gx PATH "/usr/local/go/bin" $PATH
 # Yarn
 set -gx PATH "$HOME/.yarn/bin" $PATH
 
+# .NET Core
+set -gx DOTNET_ROOT "$HOME/.dotnet"
+set -gx MSBuildSDKsPath "$DOTNET_ROOT/sdk/"({$DOTNET_ROOT}/dotnet --version)/Sdks
+set -gx PATH "$DOTNET_ROOT" $PATH
+set -gx PATH "$DOTNET_ROOT/tools" $PATH
+complete -f -c dotnet -a "(dotnet complete)"
+
 # Aliases
 alias cat="bat"
 alias vim="nvim"
