@@ -40,6 +40,7 @@ endif
     " Plug 'preservim/nerdcommenter'
     Plug 'tomtom/tcomment_vim'
     Plug 'tpope/vim-fugitive'
+    Plug 'tpope/vim-surround'
     Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
     Plug 'lambdalisue/fern.vim'
         Plug 'lambdalisue/nerdfont.vim'
@@ -67,6 +68,13 @@ if exists('g:vscode')
 
     " Turn on case-insensitive feature
     let g:EasyMotion_smartcase = 1
+
+    nmap cqp :call VSCodeNotify('calva.jackIn')<CR>
+    nmap cqq :call VSCodeNotify('calva.disconnect')<CR>
+    nmap cpr :call VSCodeNotify('calva.loadFile')<CR>
+    nmap cpR :call VSCodeNotify('calva.loadNamespace')<CR>
+    nmap cpp :call VSCodeNotify('calva.evaluateSelection')<CR>
+    nmap cqc :call VSCodeNotify('calva.evalCurrentFormInREPLWindow')<CR>
 
 else
 

@@ -1,4 +1,4 @@
-set -gx PATH "$HOME/.local/bin" $PATH
+# set -gx PATH "$HOME/.local/bin" $PATH
 set -gx EDITOR "nvim"
 set -gx VISUAL $EDITOR
 set -gx BROWSER "firefox"
@@ -22,6 +22,12 @@ set -gx PATH "$DOTNET_ROOT" $PATH
 set -gx PATH "$DOTNET_ROOT/tools" $PATH
 complete -f -c dotnet -a "(dotnet complete)"
 
+# Doom Emacs
+set -gx PATH "$HOME/.emacs.d/bin" $PATH
+
+# Scripts
+set -gx PATH "$HOME/scripts" $PATH
+
 # Aliases
 alias cat="bat"
 alias vim="nvim"
@@ -37,6 +43,7 @@ alias gst="git st"
 alias glg="git lg"
 alias D="cd $HOME/Downloads"
 alias P="cd $HOME/Projects"
+alias e="emacs"
 
 # Go to previous directory using `-`
 abbr -a -- - 'cd -'
