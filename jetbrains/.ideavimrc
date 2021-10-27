@@ -1,0 +1,26 @@
+set hlsearch incsearch ignorecase smartcase
+set scrolloff=5  " always keep at least 5 visible lines
+set showmode
+set clipboard+=unnamedplus  " Use system clipboard
+
+let mapleader = " "
+
+map <Leader>r <Action>(RenameElement)
+map <Leader>f <Action>(FindUsages)
+map <Leader><Leader><Space> :nohlsearch<CR>
+map Y y$
+
+set ideajoin
+
+" Plugins
+set easymotion
+set NERDTree
+set surround
+set multiple-cursors
+set commentary
+set ReplaceWithRegister
+set exchange
+set vim-paragraph-motion
+set highlightedyank
+    let g:highlightedyank_highlight_duration = "500"
+    let g:highlightedyank_highlight_color = "rgba(80, 250, 123, 155)"
