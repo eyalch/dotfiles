@@ -12,6 +12,10 @@ map Y y$
 
 set ideajoin
 
+sethandler <C-V> i:ide
+sethandler <C-F> a:ide
+sethandler <C-D> a:ide
+
 " Plugins
 set easymotion
 set NERDTree
