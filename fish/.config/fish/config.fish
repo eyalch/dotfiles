@@ -20,11 +20,11 @@ set -gx PATH "/usr/local/go/bin" $PATH
 set -gx PATH "$HOME/.yarn/bin" $PATH
 
 # .NET Core
-set -gx DOTNET_ROOT "$HOME/.dotnet"
-set -gx MSBuildSDKsPath "$DOTNET_ROOT/sdk/"({$DOTNET_ROOT}/dotnet --version)/Sdks
-set -gx PATH "$DOTNET_ROOT" $PATH
-set -gx PATH "$DOTNET_ROOT/tools" $PATH
-complete -f -c dotnet -a "(dotnet complete)"
+# set -gx DOTNET_ROOT "$HOME/.dotnet"
+# set -gx MSBuildSDKsPath "$DOTNET_ROOT/sdk/"({$DOTNET_ROOT}/dotnet --version)/Sdks
+# set -gx PATH "$DOTNET_ROOT" $PATH
+# set -gx PATH "$DOTNET_ROOT/tools" $PATH
+# complete -f -c dotnet -a "(dotnet complete)"
 
 # Doom Emacs
 set -gx PATH "$HOME/.emacs.d/bin" $PATH
