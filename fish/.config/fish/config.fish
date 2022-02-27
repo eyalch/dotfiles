@@ -1,11 +1,15 @@
-# set -gx PATH "$HOME/.local/bin" $PATH
+set -gx PATH "$HOME/.local/bin" $PATH
 set -gx EDITOR "nvim"
 set -gx VISUAL $EDITOR
 set -gx BROWSER "firefox"
 
 # Python
-set -gx PIPENV_VENV_IN_PROJECT "true"
 set -gx PYTHONDONTWRITEBYTECODE "true"
+
+# pyenv
+set -gx PATH "$HOME/.pyenv/bin" $PATH
+status is-login; and pyenv init --path | source
+status is-interactive; and pyenv init - | source
 
 # Go
 set -gx GOPATH "$HOME/go"
