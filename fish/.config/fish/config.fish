@@ -1,3 +1,5 @@
+eval (/opt/homebrew/bin/brew shellenv)
+
 set -gx PATH "$HOME/.local/bin" $PATH
 set -gx EDITOR "nvim"
 set -gx VISUAL $EDITOR
