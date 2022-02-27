@@ -1,7 +1,7 @@
 set -gx PATH "$HOME/.local/bin" $PATH
 set -gx EDITOR "nvim"
 set -gx VISUAL $EDITOR
-set -gx BROWSER "firefox"
+set -gx BROWSER "brave"
 
 # Python
 set -gx PYTHONDONTWRITEBYTECODE "true"
