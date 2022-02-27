@@ -56,10 +56,4 @@ abbr -a -- - 'cd -'
 set fish_greeting
 
 # Starship prompt
-if command -v starship > /dev/null
-    starship init fish | source
-else
-    # Install Starship if not installed
-    echo "Starship prompt (https://starship.rs/) isn't installed. Installing..."
-    curl -fsSL https://starship.rs/install.sh | bash
-end
+starship init fish | source
